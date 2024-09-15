@@ -12,6 +12,7 @@ tar -xzvf geth-linux-amd64-0.9.2-ea9f0d2.tar.gz
 if ! grep -q "$HOME/go/bin" $HOME/.bash_profile; then
   echo 'export PATH=$PATH:$HOME/go/bin' >> $HOME/.bash_profile
 fi
+sudo rm -f geth-linux-amd64-0.9.2-ea9f0d2.tar.gz
 sudo cp geth-linux-amd64-0.9.2-ea9f0d2/geth $HOME/go/bin/story-geth
 source $HOME/.bash_profile
 story-geth version
@@ -23,6 +24,7 @@ tar -xzvf story-linux-amd64-0.10.0-9603826.tar.gz
 if ! grep -q "$HOME/go/bin" $HOME/.bash_profile; then
   echo 'export PATH=$PATH:$HOME/go/bin' >> $HOME/.bash_profile
 fi
+sudo rm -f story-linux-amd64-0.10.0-9603826.tar.gz
 sudo cp story-linux-amd64-0.10.0-9603826/story $HOME/go/bin/story
 source $HOME/.bash_profile
 story version
