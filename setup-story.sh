@@ -116,4 +116,5 @@ sudo systemctl start story
 
 # Export and create validator
 story validator export --export-evm-key
+story validator export --export-evm-key --evm-key-path .env
 story validator create --stake 1000000000000000000
