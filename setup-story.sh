@@ -17,7 +17,7 @@ source $HOME/.bash_profile
 story-geth version
 
 # Download and extract story
-wget https://story-geth-binaries.s3.us-west-1.amazonaws.com/story-public/story-linux-amd64-0.9.11-2a25df1.tar.gz
+wget https://story-geth-binaries.s3.us-west-1.amazonaws.com/story-public/story-linux-amd64-0.10.0-9603826.tar.gz
 tar -xzvf story-linux-amd64-0.9.11-2a25df1.tar.gz
 [ ! -d "$HOME/go/bin" ] && mkdir -p $HOME/go/bin
 if ! grep -q "$HOME/go/bin" $HOME/.bash_profile; then
