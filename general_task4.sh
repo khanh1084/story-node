@@ -111,6 +111,37 @@ getLatestBlockFromTestnet() {
   curl -s https://story-testnet-rpc.polkachu.com/status | jq .result.sync_info.latest_block_height
 }
 
+# Function to install Grafana
+installGrafana() {
+  printGreen "Installing Grafana..."
+  apt-get install -y apt-transport-https software-properties-common wget
+  wget -q -O - https://packages.grafana.com/gpg.key | apt-key add -
+  echo "deb https://packages.grafana.com/enterprise/deb stable main" | tee -a /etc/apt/sources.list.d/grafana.list
+  apt-get update -y
+  apt-get install grafana-enterprise -y
+  systemctl daemon-reload
+  systemctl enable grafana-server
+  systemctl start grafana-server
+  printGreen "Grafana installed and started."
+}
+
+# Function to stop Grafana
+stopGrafana() {
+  printGreen "Stopping Grafana..."
+  sudo systemctl stop grafana-server
+  printGreen "Grafana stopped."
+}
+
+# Function to uninstall Grafana
+uninstallGrafana() {
+  printGreen "Uninstalling Grafana..."
+  sudo systemctl stop grafana-server
+  sudo systemctl disable grafana-server
+  sudo apt-get remove --purge grafana-enterprise -y
+  sudo rm -rf /etc/grafana /var/lib/grafana
+  printGreen "Grafana uninstalled."
+}
+
 # Main menu
 mainMenu() {
   echo -e "\033[36m""Story Utility Tool""\e[0m"
@@ -125,6 +156,9 @@ mainMenu() {
   echo "9. Stop Story"
   echo "10. Restart Story"
   echo "11. Get the latest block from testnet/server"
+  echo "12. Install Grafana"
+  echo "13. Stop Grafana"
+  echo "14. Uninstall Grafana"
   echo "q. Quit"
 }
 
@@ -144,6 +178,9 @@ while true; do
     9) stopStory ;;
     10) restartStory ;;
     11) getLatestBlockFromTestnet ;;
+    12) installGrafana ;;
+    13) stopGrafana ;;
+    14) uninstallGrafana ;;
     q) exit 0 ;;
     *) printRed "Invalid choice, please try again." ;;
   esac
