@@ -22,7 +22,7 @@ installStory() {
     wget -qO story.tar.gz $(curl -s https://api.github.com/repos/piplabs/story/releases/latest | grep 'body' | grep -Eo 'https?://[^ ]+story-linux-amd64[^ ]+' | sed 's/......$//')
     echo "Extracting and configuring Story..."
     tar xf story.tar.gz
-    sudo cp story*/story /bin
+    sudo cp -f story*/story /bin
     rm -rf story*/ story.tar.gz
 }
 
